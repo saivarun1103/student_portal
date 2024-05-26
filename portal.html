@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="welcome-container">
+        <h2>Welcome, !</h2>
+        <p>This is your student portal.</p>
+        <ul>
+            <li><a href="attendance.html">View Attendance</a></li>
+            <li><a href="fee.html">View Fee</a></li>
+            <li><a href="study_material.html">Study Material</a></li>
+            <li><a href="grades.html">Grades</a></li>
+            <li><a href="time.html">Class Schedule</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="semester_subjects.html">SEM Wise Subject</a></li>
+            <li><a href="admission.html">Admission Details</a></li>
+            <li><a href="faculty_details.html">Faculty/Mentore details</a></li>
+            <li><a href="events.html">Upcoming Events</a></li>
+            <li><a href="backlogs.html">Backlogs</a></li>
+            <li><a href="leave_permission.html">Leave Permission</a></li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function() {
+    const studentName = localStorage.getItem('studentName');
+
+    if (studentName) {
+        document.getElementById('studentNameDisplay').textContent = studentName;
+    } else {
+        // If no student name is found in local storage, redirect back to the login page
+        window.location.href = 'index.html';
+    }
+};
+
+    </script>
+</body>
+</html>

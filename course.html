@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection and Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Course Selection</h2>
+        <form id="courseForm">
+            <div class="input-group">
+                <label for="courseName">Course Name</label>
+                <input type="text" id="courseName" name="courseName" required>
+            </div>
+            <div class="input-group">
+                <label for="facultyName">Faculty Name</label>
+                <input type="text" id="facultyName" name="facultyName" required>
+            </div>
+            <div class="input-group">
+                <label for="day">Day</label>
+                <select id="day" name="day" required>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="time">Time</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <button type="submit">Add Course</button>
+        </form>
+        <h2>Generated Timetable</h2>
+        <table id="timetable">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Course Name</th>
+                    <th>Faculty Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Timetable entries will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const courseForm = document.getElementById("courseForm");
+            const timetableBody = document.getElementById("timetable").querySelector("tbody");
+
+            courseForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const courseName = document.getElementById("courseName").value.trim();
+                const facultyName = document.getElementById("facultyName").value.trim();
+                const day = document.getElementById("day").value;
+                const time = document.getElementById("time").value;
+
+                if (courseName && facultyName && day && time) {
+                    const newRow = timetableBody.insertRow();
+
+                    const dayCell = newRow.insertCell(0);
+                    const timeCell = newRow.insertCell(1);
+                    const courseNameCell = newRow.insertCell(2);
+                    const facultyNameCell = newRow.insertCell(3);
+
+                    dayCell.textContent = day;
+                    timeCell.textContent = time;
+                    courseNameCell.textContent = courseName;
+                    facultyNameCell.textContent = facultyName;
+
+                    // Clear the form
+                    courseForm.reset();
+                } else {
+                    alert("Please fill in all the fields.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

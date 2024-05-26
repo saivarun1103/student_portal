@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="events-container">
+        <h2>Upcoming Events</h2>
+        <div id="events-list">
+            <!-- Events will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const events = [
+        {
+            title: 'Science Fest',
+            date: '2024-06-15',
+            description: 'A grand science fest showcasing projects and innovations by students.'
+        },
+        {
+            title: 'Annual Sports Day',
+            date: '2024-07-10',
+            description: 'A day full of sports activities and competitions.'
+        },
+        {
+            title: 'Diwali Celebration',
+            date: '2024-11-04',
+            description: 'Festival of lights celebration with cultural programs and fireworks.'
+        }
+    ];
+
+    const eventsListContainer = document.getElementById('events-list');
+
+    // Function to populate events list
+    function populateEventsList(events) {
+        events.forEach(event => {
+            const eventDiv = document.createElement('div');
+            eventDiv.classList.add('event-card');
+            eventDiv.innerHTML = `
+                <h3>${event.title}</h3>
+                <p><strong>Date:</strong> ${event.date}</p>
+                <p>${event.description}</p>
+            `;
+            eventsListContainer.appendChild(eventDiv);
+        });
+    }
+
+    // Populate events list
+    populateEventsList(events);
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gitam Student Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* AliceBlue */
+        }
+        header {
+            background-color: #b0e0e6; /* PowderBlue */
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .card {
+            background-color: #e0ffff; /* LightCyan */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            transition: transform 0.2s;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .card img {
+            width: 50%;
+            height: auto;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h2 {
+            margin: 10px 0;
+            color: #4682b4; /* SteelBlue */
+        }
+        .card p {
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #b0e0e6; /* PowderBlue */
+            color: #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff; /* AliceBlue */
+        }
+        .login-card {
+            background-color: #e0ffff; /* LightCyan */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .login-card h2 {
+            margin: 20px 0;
+            color: #4682b4; /* SteelBlue */
+        }
+        .login-card input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-card button {
+            background-color: #4682b4; /* SteelBlue */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-card button:hover {
+            background-color: #4169e1; /* RoyalBlue */
+        }
+        .main-container {
+            display: none;
+        }
+        .feature-container {
+            display: none;
+            padding: 20px;
+            background-color: #f0f8ff; /* AliceBlue */
+        }
+        .feature-container h2 {
+            color: #4682b4; /* SteelBlue */
+        }
+    </style>
+    <script>
+        function login() {
+            const validCredentials = {
+                username: "student",
+                password: "password"
+            };
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === validCredentials.username && password === validCredentials.password) {
+                document.querySelector(".login-container").style.display = "none";
+                document.querySelector(".main-container").style.display = "block";
+            } else {
+                alert("Invalid credentials");
+            }
+        }
+
+        function showFeature(id) {
+            const features = document.querySelectorAll(".feature-container");
+            features.forEach(feature => {
+                feature.style.display = "none";
+            });
+            document.getElementById(id).style.display = "block";
+        }
+
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="login-card">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<div class="main-container">
+    <header>
+        <h1>Student Portal</h1>
+    </header>
+
+    <div class="container">
+        <div class="card" onclick="showFeature('profile')">
+            <img src="images/profile.jpg" alt="Profile">
+            <h2>Profile</h2>
+        </div>
+        <div class="card" onclick="navigateTo('time.html')">
+            <img src="images/class schedules.jpg" alt="Class Schedules">
+            <h2>Class Schedules</h2>
+        </div>
+        <div class="card" onclick="navigateTo('student_material.html')">
+            <img src="images/study materials.png" alt="Study Materials">
+            <h2>Study Materials</h2>
+        </div>
+        <div class="card" onclick="navigateTo('semester_subjects.html')">
+            <img src="images/subjects list.jpg" alt="Subjects List">
+            <h2>Sem Wise Subjects List</h2>
+        </div>
+        <div class="card" onclick="navigateTo('fee.html')">
+            <img src="images/fees.jpg" alt="Fees">
+            <h2>Fees</h2>
+        </div>
+        <div class="card" onclick="navigateTo('grade.html')">
+            <img src="images/grades.png" alt="Grade Card">
+            <h2>Grade Card</h2>
+        </div>
+        <div class="card" onclick="navigateTo('attendance.html')">
+            <img src="images/attendance.jpg" alt="Attendance">
+            <h2>Attendance</h2>
+        </div>
+        <div class="card" onclick="navigateTo('admission.html')">
+            <img src="images/admission.jpg" alt="Admission">
+            <h2>Admission</h2>
+        </div>
+        <div class="card" onclick="navigateTo('faculty_details.html')">
+            <img src="images/mentor.jpg" alt="Mentor/Faculty Details">
+            <h2>Mentor/Faculty Details</h2>
+        </div>
+        <div class="card" onclick="navigateTo('events.html')">
+            <img src="images/events.jpg" alt="Events">
+            <h2>Events</h2>
+        </div>
+        <div class="card" onclick="navigateTo('backlogs.html')">
+            <img src="images/backlog.jpg" alt="Backlogs">
+            <h2>Backlogs</h2>
+        </div>
+        <div class="card" onclick="navigateTo('notice_board.html')">
+            <img src="images/notice board.jpg" alt="Notice Board">
+            <h2>Notice Board</h2>
+        </div>
+        <div class="card" onclick="navigateTo('course.html')">
+            <img src="images/registration.jpg" alt="Course Registration">
+            <h2>Course Registration</h2>
+        </div>
+        <div class="card" onclick="navigateTo('leave_permission.html')">
+            <img src="images/leave.jpg" alt="Leave Permission">
+            <h2>Leave Permission</h2>
+        </div>
+        <div class="card" onclick="navigateTo('resume.html')">
+            <img src="images/resume.jpg" alt="Resume">
+            <h2>Resume</h2>
+        </div>
+        <div class="card" onclick="navigateTo('library.html')">
+            <img src="images/library.jpg" alt="Library">
+            <h2>Library</h2>
+        </div>
+    </div>
+
+    <div class="feature-container" id="profile">
+        <h2>Profile</h2>
+        <p>Student Name: John Doe</p>
+        <p>Student ID: 123456789</p>
+        <p>Program: Computer Science</p>
+        <p>Update your profile information here.</p>
+    </div>
+
+    <div class="feature-container" id="class-schedules">
+        <h2>Class Schedules</h2>
+        <p>Here you can view your class schedules for the semester.</p>
+    </div>
+
+    <div class="feature-container" id="study-materials">
+        <h2>Study Materials</h2>
+        <p>Access study materials for your courses here.</p>
+    </div>
+
+    <div class="feature-container" id="subjects-list">
+        <h2>Sem Wise Subjects List</h2>
+        <p>View the list of subjects for each semester here.</p>
+    </div>
+
+    <div class="feature-container" id="fees">
+        <h2>Fees</h2>
+        <p>Check your fee details and payment status here.</p>
+    </div>
+
+    <div class="feature-container" id="attendance">
+        <h2>Attendance</h2>
+        <p>Check your attendance record for all subjects here.</p>
+    </div>
+
+    <div class="feature-container" id="admission">
+        <h2>Admission</h2>
+        <p>Admission related information and updates.</p>
+    </div>
+
+    <div class="feature-container" id="mentor-details">
+        <h2>Mentor/Faculty Details</h2>
+        <p>Find contact information for your mentors and faculty members here.</p>
+    </div>
+
+    <div class="feature-container" id="events">
+        <h2>Events</h2>
+        <p>Stay updated with the latest events happening in the institution.</p>
+    </div>
+
+    <div class="feature-container" id="backlogs">
+        <h2>Backlogs</h2>
+        <p>View and manage your backlogs here.</p>
+    </div>
+
+    <div class="feature-container" id="notice-board">
+        <h2>Notice Board</h2>
+        <p>Important notices and announcements will be posted here.</p>
+    </div>
+
+    <div class="feature-container" id="course-registration">
+        <h2>Course Registration</h2>
+        <p>Register for your courses for the upcoming semester here.</p>
+    </div>
+
+    <div class="feature-container" id="health-records">
+        <h2>Leave Permission</h2>
+        <p>Request leave permissions here.</p>
+    </div>
+
+    <div class="feature-container" id="library">
+        <h2>Library</h2>
+        <p>Access library resources here.</p>
+    </div>
+</div>
+
+</body>
+</html>

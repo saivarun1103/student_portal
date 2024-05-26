@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="notice-board-container">
+        <h2>Notice Board</h2>
+        <div id="notices-list">
+            <!-- Notices will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const notices = [
+        {
+            title: 'Midterm Exams',
+            date: '2024-06-20',
+            description: 'Midterm exams will start from June 20, 2024.'
+        },
+        {
+            title: 'Summer Holidays',
+            date: '2024-07-01',
+            description: 'Summer holidays will begin on July 1, 2024 and end on July 15, 2024.'
+        },
+        {
+            title: 'Quiz 1',
+            date: '2024-06-10',
+            description: 'First quiz for all subjects will be held on June 10, 2024.'
+        },
+        {
+            title: 'Final Exams',
+            date: '2024-12-01',
+            description: 'Final exams will start from December 1, 2024.'
+        }
+    ];
+
+    const noticesListContainer = document.getElementById('notices-list');
+
+    // Function to populate notices list
+    function populateNoticesList(notices) {
+        notices.forEach(notice => {
+            const noticeDiv = document.createElement('div');
+            noticeDiv.classList.add('notice-card');
+            noticeDiv.innerHTML = `
+                <h3>${notice.title}</h3>
+                <p><strong>Date:</strong> ${notice.date}</p>
+                <p>${notice.description}</p>
+            `;
+            noticesListContainer.appendChild(noticeDiv);
+        });
+    }
+
+    // Populate notices list
+    populateNoticesList(notices);
+});
+    </script>
+</body>
+</html>

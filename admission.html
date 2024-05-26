@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="admission-container">
+        <h2>Admission Details</h2>
+        <p><strong>Admission Date:</strong> <span id="admission-date">01-09-2022</span></p>
+        <h3>School Grades</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody id="school-grades">
+                <!-- School grades will be inserted here -->
+            </tbody>
+        </table>
+        <h3>Intermediate College Grades</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody id="college-grades">
+                <!-- College grades will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const schoolGrades = [
+        { subject: 'Math', grade: 'A' },
+        { subject: 'Science', grade: 'A' },
+        { subject: 'English', grade: 'B' },
+        { subject: 'History', grade: 'B' }
+    ];
+
+    const collegeGrades = [
+        { subject: 'Math', grade: 'A' },
+        { subject: 'Physics', grade: 'B' },
+        { subject: 'Chemistry', grade: 'B' },
+        { subject: 'Biology', grade: 'A' }
+    ];
+
+    const schoolGradesTable = document.getElementById('school-grades');
+    const collegeGradesTable = document.getElementById('college-grades');
+
+    // Function to populate grades
+    function populateGrades(grades, table) {
+        grades.forEach(grade => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${grade.subject}</td><td>${grade.grade}</td>`;
+            table.appendChild(row);
+        });
+    }
+
+    // Populate school and college grades
+    populateGrades(schoolGrades, schoolGradesTable);
+    populateGrades(collegeGrades, collegeGradesTable);
+});
+
+    </script>
+</body>
+</html>

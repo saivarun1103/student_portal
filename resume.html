@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* AliceBlue */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #e0ffff; /* LightCyan */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4682b4; /* SteelBlue */
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4682b4; /* SteelBlue */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #4169e1; /* RoyalBlue */
+        }
+        .resume-container {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .resume-header, .resume-section {
+            margin-bottom: 20px;
+        }
+        .resume-header h1, .resume-header h2 {
+            margin: 0;
+            padding: 0;
+        }
+        .resume-header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .resume-header h2 {
+            font-size: 18px;
+            color: #666;
+        }
+        .resume-section h3 {
+            margin: 0 0 10px 0;
+            padding: 0;
+            font-size: 18px;
+            color: #4682b4;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .resume-section p {
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container form-container">
+    <h2>Resume Builder</h2>
+    <form id="resumeForm">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" required>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" required>
+        
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+        
+        <label for="education">Education</label>
+        <textarea id="education" name="education" rows="5" required></textarea>
+        
+        <label for="experience">Experience</label>
+        <textarea id="experience" name="experience" rows="5" required></textarea>
+        
+        <label for="skills">Skills</label>
+        <textarea id="skills" name="skills" rows="3" required></textarea>
+        
+        <button type="button" onclick="generateResume()">Generate Resume</button>
+    </form>
+</div>
+
+<div class="container resume-container" id="resumeContainer">
+    <div class="resume-header">
+        <h1 id="displayName"></h1>
+        <h2 id="displayEmail"></h2>
+        <h2 id="displayPhone"></h2>
+        <h2 id="displayAddress"></h2>
+    </div>
+    <div class="resume-section">
+        <h3>Education</h3>
+        <p id="displayEducation"></p>
+    </div>
+    <div class="resume-section">
+        <h3>Experience</h3>
+        <p id="displayExperience"></p>
+    </div>
+    <div class="resume-section">
+        <h3>Skills</h3>
+        <p id="displaySkills"></p>
+    </div>
+</div>
+
+<script>
+    function generateResume() {
+        // Get form values
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const education = document.getElementById('education').value;
+        const experience = document.getElementById('experience').value;
+        const skills = document.getElementById('skills').value;
+
+        // Display values in the resume section
+        document.getElementById('displayName').textContent = fullName;
+        document.getElementById('displayEmail').textContent = email;
+        document.getElementById('displayPhone').textContent = phone;
+        document.getElementById('displayAddress').textContent = address;
+        document.getElementById('displayEducation').textContent = education;
+        document.getElementById('displayExperience').textContent = experience;
+        document.getElementById('displaySkills').textContent = skills;
+
+        // Show the resume container
+        document.querySelector('.resume-container').style.display = 'block';
+        document.querySelector('.form-container').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grades</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Your existing CSS styles */
+    </style>
+</head>
+<body>
+    <div class="grades-container">
+        <div class="header">
+            <h1>Grades for <span id="studentNameDisplay"></span></h1>
+            <a href="portal.html" class="back">Back to Portal</a>
+        </div>
+        <table class="grades-table">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>S1</td>
+                    <td id="gradeS1"></td>
+                </tr>
+                <tr>
+                    <td>S2</td>
+                    <td id="gradeS2"></td>
+                </tr>
+                <tr>
+                    <td>S3</td>
+                    <td id="gradeS3"></td>
+                </tr>
+                <tr>
+                    <td>S4</td>
+                    <td id="gradeS4"></td>
+                </tr>
+                <tr>
+                    <td>S5</td>
+                    <td id="gradeS5"></td>
+                </tr>
+                <tr>
+                    <td>S6</td>
+                    <td id="gradeS6"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const grades = ['A', 'B', 'C', 'O'];
+            const studentName = sessionStorage.getItem('studentName');
+            if (studentName) {
+                document.getElementById('studentNameDisplay').textContent = studentName;
+                // Randomly assign grades
+                for (let i = 1; i <= 6; i++) {
+                    const randomGrade = grades[Math.floor(Math.random() * grades.length)];
+                    document.getElementById('gradeS' + i).textContent = randomGrade;
+                }
+            } else {
+                // Redirect back to login if no student name found in storage
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

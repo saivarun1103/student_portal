@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fees</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="fees-container">
+        <h2>Fees</h2>
+        <table id="feesTable">
+            <thead>
+                <tr>
+                    <th>Semester</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Fee records will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const studentName = localStorage.getItem('studentName');
+
+    if (!studentName) {
+        // If no student name is found in local storage, redirect back to the login page
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const feesTable = document.getElementById('feesTable').querySelector('tbody');
+
+    // Example fee records
+    const feeRecords = [
+        { semester: 'Spring 2024', status: 'Paid', amount: '$2000', dueDate: '2024-01-15' },
+        { semester: 'Fall 2024', status: 'Pending', amount: '$2000', dueDate: '2024-08-15' },
+        { semester: 'Spring 2025', status: 'Pending', amount: '$2000', dueDate: '2025-01-15' }
+    ];
+
+    // Display fee records
+    function displayFeeRecords() {
+        feesTable.innerHTML = '';
+        feeRecords.forEach(record => {
+            const row = document.createElement('tr');
+            const semesterCell = document.createElement('td');
+            const statusCell = document.createElement('td');
+            const amountCell = document.createElement('td');
+            const dueDateCell = document.createElement('td');
+            const statusIcon = document.createElement('i');
+
+            semesterCell.textContent = record.semester;
+            statusCell.textContent = record.status;
+            amountCell.textContent = record.amount;
+            dueDateCell.textContent = record.dueDate;
+            
+            if (record.status === 'Paid') {
+                statusIcon.className = 'fa fa-check-circle';
+                statusIcon.style.color = 'green';
+            } else {
+                statusIcon.className = 'fa fa-exclamation-circle';
+                statusIcon.style.color = 'red';
+            }
+
+            statusCell.appendChild(statusIcon);
+            row.appendChild(semesterCell);
+            row.appendChild(statusCell);
+            row.appendChild(amountCell);
+            row.appendChild(dueDateCell);
+            feesTable.appendChild(row);
+        });
+    }
+
+    // Initial display of fee records
+    displayFeeRecords();
+});
+
+    </script>
+</body>
+</html>

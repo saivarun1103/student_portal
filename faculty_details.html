@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty/Mentor Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="faculty-container">
+        <h2>Faculty/Mentor Details</h2>
+        <div id="faculty-details">
+            <!-- Faculty/Mentor details will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const facultyDetails = [
+        {
+            name: 'Dr. John Doe',
+            department: 'Computer Science',
+            email: 'john.doe@college.edu',
+            officeHours: 'Mon, Wed 2:00 PM - 4:00 PM'
+        },
+        {
+            name: 'Prof. Jane Smith',
+            department: 'Mathematics',
+            email: 'jane.smith@college.edu',
+            officeHours: 'Tue, Thu 10:00 AM - 12:00 PM'
+        }
+    ];
+
+    const facultyDetailsContainer = document.getElementById('faculty-details');
+
+    // Function to populate faculty/mentor details
+    function populateFacultyDetails(details) {
+        details.forEach(detail => {
+            const facultyDiv = document.createElement('div');
+            facultyDiv.classList.add('faculty-card');
+            facultyDiv.innerHTML = `
+                <h3>${detail.name}</h3>
+                <p><strong>Department:</strong> ${detail.department}</p>
+                <p><strong>Email:</strong> ${detail.email}</p>
+                <p><strong>Office Hours:</strong> ${detail.officeHours}</p>
+            `;
+            facultyDetailsContainer.appendChild(facultyDiv);
+        });
+    }
+
+    // Populate faculty/mentor details
+    populateFacultyDetails(facultyDetails);
+});
+
+    </script>
+</body>
+</html>

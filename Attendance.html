@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="attendance-container">
+        <h2>Attendance</h2>
+        <table id="attendanceTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Attendance records will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Attendance Details Modal -->
+    <div id="attendanceDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Attendance Details</h2>
+            <div id="attendanceDetails">
+                <!-- Detailed attendance info will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const studentName = localStorage.getItem('studentName');
+
+            if (!studentName) {
+                // If no student name is found in local storage, redirect back to the login page
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const attendanceTable = document.getElementById('attendanceTable').querySelector('tbody');
+            const attendanceDetailsModal = document.getElementById('attendanceDetailsModal');
+            const closeButton = document.querySelector('.close-button');
+            const attendanceDetailsDiv = document.getElementById('attendanceDetails');
+
+            // Function to generate date range
+            function generateDateRange(startDate, endDate) {
+                const dates = [];
+                let currentDate = new Date(startDate);
+
+                while (currentDate <= new Date(endDate)) {
+                    dates.push(new Date(currentDate));
+                    currentDate.setDate(currentDate.getDate() + 1);
+                }
+
+                return dates;
+            }
+
+            // Example date range for the month of May 2024
+            const dateRange = generateDateRange('2024-05-01', '2024-05-31');
+
+            // Example attendance records
+            const attendanceRecords = [
+                { date: '2024-05-01', subject: 'S1', status: 'Present' },
+                { date: '2024-05-01', subject: 'S2', status: 'Absent' },
+                { date: '2024-05-02', subject: 'S1', status: 'Present' }
+            ];
+
+            // Function to get attendance record by date
+            function getAttendanceRecord(date) {
+                return attendanceRecords.filter(record => record.date === date.toISOString().split('T')[0]);
+            }
+
+            // Display attendance records
+            function displayAttendanceRecords() {
+                attendanceTable.innerHTML = '';
+                dateRange.forEach(date => {
+                    const dateStr = date.toISOString().split('T')[0];
+                    const records = getAttendanceRecord(date);
+                    if (records.length > 0) {
+                        records.forEach(record => {
+                            const row = document.createElement('tr');
+                            const dateCell = document.createElement('td');
+                            const subjectCell = document.createElement('td');
+                            const statusCell = document.createElement('td');
+                            const detailsCell = document.createElement('td');
+                            const detailsIcon = document.createElement('i');
+
+                            dateCell.innerHTML = `<a href="#">${dateStr}</a>`;
+                            subjectCell.textContent = record.subject;
+                            statusCell.textContent = record.status;
+                            detailsIcon.className = 'fa fa-info-circle';
+                            detailsIcon.style.cursor = 'pointer';
+
+                            detailsIcon.addEventListener('click', () => {
+                                showAttendanceDetails(record);
+                            });
+
+                            detailsCell.appendChild(detailsIcon);
+                            row.appendChild(dateCell);
+                            row.appendChild(subjectCell);
+                            row.appendChild(statusCell);
+                            row.appendChild(detailsCell);
+                            attendanceTable.appendChild(row);
+                        });
+                    } else {
+                        const row = document.createElement('tr');
+                        const dateCell = document.createElement('td');
+                        const subjectCell = document.createElement('td');
+                        const statusCell = document.createElement('td');
+                        const detailsCell = document.createElement('td');
+                        const unavailableIcon = document.createElement('i');
+
+                        dateCell.innerHTML = `<a href="#">${dateStr}</a>`;
+                        subjectCell.textContent = 'N/A';
+                        statusCell.textContent = 'Unavailable';
+                        unavailableIcon.className = 'fa fa-times-circle';
+                        unavailableIcon.style.color = 'red';
+
+                        detailsCell.appendChild(unavailableIcon);
+                        row.appendChild(dateCell);
+                        row.appendChild(subjectCell);
+                        row.appendChild(statusCell);
+                        row.appendChild(detailsCell);
+                        attendanceTable.appendChild(row);
+                    }
+                });
+            }
+
+            // Show attendance details in modal
+            function showAttendanceDetails(record) {
+                attendanceDetailsDiv.innerHTML = `
+                    <p>Date: ${record.date}</p>
+                    <p>Subject: ${record.subject}</p>
+                    <p>Status: ${record.status}</p>
+                `;
+                attendanceDetailsModal.style.display = 'block';
+            }
+
+            // Close modal
+            closeButton.addEventListener('click', () => {
+                attendanceDetailsModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === attendanceDetailsModal) {
+                    attendanceDetailsModal.style.display = 'none';
+                }
+            });
+
+            // Initial display of attendance records
+            displayAttendanceRecords();
+        });
+    </script>
+</body>
+</html>

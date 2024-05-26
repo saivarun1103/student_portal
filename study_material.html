@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Material</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="study-material-container">
+        <h2>Study Material</h2>
+        <div class="subject-list">
+            <h3>Subjects:</h3>
+            <ul>
+                <li><a href="#" id="subject-s1">Subject 1</a></li>
+                <li><a href="#" id="subject-s2">Subject 2</a></li>
+                <li><a href="#" id="subject-s3">Subject 3</a></li>
+                <li><a href="#" id="subject-s4">Subject 4</a></li>
+                <li><a href="#" id="subject-s5">Subject 5</a></li>
+                <li><a href="#" id="subject-s6">Subject 6</a></li>
+            </ul>
+        </div>
+        <div class="material-list" id="material-list">
+            <!-- Study materials will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const subjectLinks = document.querySelectorAll('.subject-list a');
+    const materialList = document.getElementById('material-list');
+
+    // Example study materials
+    const studyMaterials = {
+        s1: [
+            { name: 'Material 1', url: 'https://www.w3schools.com/html/default.asp' },
+            { name: 'Material 2', url: 'https://www.w3schools.com/bootstrap/bootstrap_ver.asp' }
+        ],
+        s2: [
+            { name: 'Material 1', url: 'https://www.w3schools.com/python/default.asp' },
+            { name: 'Material 2', url: 'https://www.w3schools.com/jquery/default.aspv' }
+        ],
+        // Add materials for other subjects similarly
+    };
+
+    // Function to display study materials for a subject
+    function displayMaterials(subject) {
+        materialList.innerHTML = '';
+        if (studyMaterials.hasOwnProperty(subject)) {
+            studyMaterials[subject].forEach(material => {
+                const link = document.createElement('a');
+                link.href = material.url;
+                link.textContent = material.name;
+                link.setAttribute('target', '_blank'); // Open in new tab
+                const listItem = document.createElement('li');
+                listItem.appendChild(link);
+                materialList.appendChild(listItem);
+            });
+        } else {
+            const message = document.createElement('p');
+            message.textContent = 'No study materials available for this subject.';
+            materialList.appendChild(message);
+        }
+    }
+
+    // Event listener for subject links
+    subjectLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const subject = this.id.replace('subject-', '');
+            displayMaterials(subject);
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

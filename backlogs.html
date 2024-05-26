@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backlogs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="backlogs-container">
+        <h2>Backlogs</h2>
+        <div id="backlogs-list">
+            <!-- Backlogs will be inserted here -->
+        </div>
+    </div>
+
+    <script >
+        document.addEventListener('DOMContentLoaded', function() {
+    const backlogs = [
+        { subject: 'Mathematics II', semester: 'Semester 2' },
+        { subject: 'Physics', semester: 'Semester 1' },
+        { subject: 'Chemistry', semester: 'Semester 1' }
+    ];
+
+    const backlogsListContainer = document.getElementById('backlogs-list');
+
+    // Function to populate backlogs list
+    function populateBacklogsList(backlogs) {
+        backlogs.forEach(backlog => {
+            const backlogDiv = document.createElement('div');
+            backlogDiv.classList.add('backlog-card');
+            backlogDiv.innerHTML = `
+                <h3>${backlog.subject}</h3>
+                <p><strong>Semester:</strong> ${backlog.semester}</p>
+            `;
+            backlogsListContainer.appendChild(backlogDiv);
+        });
+    }
+
+    // Populate backlogs list
+    populateBacklogsList(backlogs);
+});
+
+    </script>
+</body>
+</html>

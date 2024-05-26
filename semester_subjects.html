@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester-wise Subjects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="semester-subjects-container">
+        <h2>Semester-wise Subjects</h2>
+        <label for="semester-select">Select Semester:</label>
+        <select id="semester-select">
+            <option value="sem1">Semester 1</option>
+            <option value="sem2">Semester 2</option>
+            <option value="sem3">Semester 3</option>
+        </select>
+        <ul id="subject-list">
+            <!-- Semester-wise subjects will be inserted here -->
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const semesterSelect = document.getElementById('semester-select');
+    const subjectList = document.getElementById('subject-list');
+
+    // Define subjects for each semester
+    const semSubjects = {
+        sem1: ['S1', 'S2', 'S3', 'S4'],
+        sem2: ['S5', 'S6', 'S7', 'S8'],
+        sem3: ['S9', 'S10', 'S11', 'S12']
+    };
+
+    // Function to generate subject list for a selected semester
+    function generateSubjectList(semester) {
+        const subjects = semSubjects[semester];
+
+        // Clear previous subject list
+        subjectList.innerHTML = '';
+
+        // Generate list of subjects
+        subjects.forEach(subject => {
+            const listItem = document.createElement('li');
+            listItem.textContent = subject;
+            subjectList.appendChild(listItem);
+        });
+    }
+
+    // Event listener for semester select dropdown
+    semesterSelect.addEventListener('change', function() {
+        const selectedSemester = this.value;
+        generateSubjectList(selectedSemester);
+    });
+
+    // Generate subject list for default selected semester
+    generateSubjectList(semesterSelect.value);
+});
+
+    </script>
+</body>
+</html>
